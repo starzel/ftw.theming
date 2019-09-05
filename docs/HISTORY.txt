@@ -4,7 +4,7 @@ Changelog
 2.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Extend readme about how use embed-resource with multiple coulors [Nachtalb]
 
 
 2.0.2 (2019-03-19)
