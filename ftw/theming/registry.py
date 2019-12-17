@@ -6,11 +6,11 @@ from ftw.theming.interfaces import ISCSSResourceFactory
 from ftw.theming.interfaces import SLOTS
 from ftw.theming.profileinfo import ProfileInfo
 from tarjan import tarjan
-from zope.interface import implements
+from zope.interface import implementer
 
 
+@implementer(ISCSSRegistry)
 class SCSSRegistry(object):
-    implements(ISCSSRegistry)
 
     def __init__(self):
         self.resources = []
