@@ -5,14 +5,13 @@ from ftw.theming.interfaces import SLOTS
 from ftw.theming.profileinfo import ProfileInfo
 from path import Path
 from plone.app.layout.navigation.interfaces import INavigationRoot
-from zope.interface import implements
 from zope.interface import Interface
+from zope.interface import implementer
 
-
+@implementer(ISCSSResource)
 class SCSSResource(object):
     """A basic SCSS resource to be extended.
     """
-    implements(ISCSSResource)
 
     def __init__(self, name, slot='addon', before=None, after=None,
                  source=u''):
@@ -37,6 +36,7 @@ class SCSSResource(object):
             'SCSSResource {} has no cachekey'.format(self.name))
 
 
+@implementer(IDynamicSCSSResource)
 class DynamicSCSSResource(SCSSResource):
     """A dynamic SCSS resource provides SCSS source which may change.
     In order to have the correct caching, a cachekey is necessary.
@@ -44,7 +44,6 @@ class DynamicSCSSResource(SCSSResource):
     Dynamic resources should either subclass the DynamicSCSSResource class or
     initialize it with at least a name, a source and a cache key.
     """
-    implements(IDynamicSCSSResource)
 
     def __init__(self, name, slot='addon', before=None, after=None,
                  source=u'', cachekey=None):
@@ -61,11 +60,11 @@ class DynamicSCSSResource(SCSSResource):
         return self.cachekey
 
 
+@implementer(ISCSSFileResource)
 class SCSSFileResource(SCSSResource):
     """A scss resource represents a scss file for registering in the scss registry.
     It holds the relevant information for building the scss pipeline.
     """
-    implements(ISCSSFileResource)
 
     def __init__(self, package, relative_path, slot='addon',
                  profile=None, for_=INavigationRoot, layer=Interface,
